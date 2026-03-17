@@ -1,0 +1,2289 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Fasse AI Lab — A Nation of Builders</title>
+
+    <!-- Fonts: Editorial serif + clean sans -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,700;9..144,900&family=Work+Sans:wght@300;400;500;600&display=swap"
+      rel="stylesheet"
+    />
+
+    <style>
+      /* ===========================================
+           STYLE: INDUSTRIAL EDITORIAL
+           Warm cream with navy and copper accents
+           Vibe: Editorial, literary, thoughtful craftsmanship
+           =========================================== */
+
+      :root {
+        /* Industrial Editorial Palette */
+        --bg-cream: #f5f3ee;
+        --bg-gradient: linear-gradient(180deg, #f7fafc 0%, #f5f3ee 100%);
+        --text-primary: #1a365d;
+        --text-secondary: #4a5568;
+        --accent-copper: #c05621;
+        --accent-amber: #d69e2e;
+        --accent-warm: #e8d4c0;
+        --accent-navy: #1a365d;
+        --steel-blue: #4a5568;
+
+        /* Typography - Presentation Optimized for Distance Viewing */
+        --font-display: "Fraunces", serif;
+        --font-body: "Work Sans", sans-serif;
+        --title-size: clamp(3rem, 8vw, 6rem);
+        --h2-size: clamp(2rem, 5vw, 3.5rem);
+        --h3-size: clamp(1.5rem, 3.5vw, 2.5rem);
+        --subtitle-size: clamp(1.1rem, 2.5vw, 1.5rem);
+        --body-size: clamp(1.1rem, 2.5vw, 1.5rem);
+        --small-size: clamp(0.9rem, 1.8vw, 1.2rem);
+
+        /* Spacing - Generous for readability */
+        --slide-padding: clamp(2.5rem, 6vw, 5rem);
+        --content-gap: clamp(1.5rem, 3vw, 2.5rem);
+        --element-gap: clamp(0.75rem, 1.5vw, 1.5rem);
+
+        /* Animation */
+        --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+        --duration-normal: 0.7s;
+      }
+
+      /* ===========================================
+           VIEWPORT FITTING: MANDATORY BASE STYLES
+           =========================================== */
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      html,
+      body {
+        height: 100%;
+        overflow-x: hidden;
+      }
+
+      html {
+        scroll-snap-type: y mandatory;
+        scroll-behavior: smooth;
+      }
+
+      .slide {
+        width: 100vw;
+        height: 100vh;
+        height: 100dvh;
+        overflow: hidden;
+        scroll-snap-align: start;
+        display: flex;
+        flex-direction: column;
+        position: relative;
+        background: var(--bg-cream);
+      }
+
+      .slide-content {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        max-height: 100%;
+        overflow: auto;
+        padding: var(--slide-padding);
+        position: relative;
+      }
+
+      /* Ensure content stays centered even when zoomed */
+      .slide-content > * {
+        max-width: 100%;
+      }
+
+      /* Responsive Typography - Presentation Optimized */
+      :root {
+        /* Larger minimums for projection readability */
+        --title-size: clamp(2.5rem, 8vw, 6rem);
+        --h2-size: clamp(1.75rem, 5vw, 3.5rem);
+        --h3-size: clamp(1.4rem, 3.5vw, 2.5rem);
+        --body-size: clamp(1.1rem, 2.5vw, 1.5rem);
+        --small-size: clamp(0.9rem, 1.8vw, 1.2rem);
+        --slide-padding: clamp(2rem, 5vw, 5rem);
+        --content-gap: clamp(1rem, 3vw, 2.5rem);
+        --element-gap: clamp(0.5rem, 1.5vw, 1.5rem);
+      }
+
+      /* Cards/Containers */
+      .card,
+      .container,
+      .content-box {
+        max-width: min(90vw, 1200px);
+        max-height: min(85vh, 800px);
+      }
+
+      /* Lists */
+      .feature-list,
+      .bullet-list {
+        gap: clamp(0.6rem, 1.5vh, 1.5rem);
+      }
+
+      .feature-list li,
+      .bullet-list li {
+        font-size: var(--body-size);
+        line-height: 1.5;
+      }
+
+      /* Grids */
+      .grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr));
+        gap: clamp(1rem, 2vw, 2rem);
+      }
+
+      /* Images */
+      img,
+      .image-container {
+        max-width: 100%;
+        max-height: min(55vh, 450px);
+        object-fit: contain;
+      }
+
+      /* Responsive Breakpoints - Optimized for presentations */
+      @media (max-height: 700px) {
+        :root {
+          --slide-padding: clamp(1.5rem, 4vw, 3rem);
+          --content-gap: clamp(0.8rem, 2vw, 1.5rem);
+          --title-size: clamp(2rem, 7vw, 4rem);
+          --h2-size: clamp(1.5rem, 4vw, 2.8rem);
+          --body-size: clamp(1rem, 2.2vw, 1.3rem);
+        }
+      }
+
+      @media (max-height: 600px) {
+        :root {
+          --slide-padding: clamp(1rem, 3vw, 2rem);
+          --content-gap: clamp(0.5rem, 1.5vw, 1rem);
+          --title-size: clamp(1.5rem, 6vw, 3rem);
+          --body-size: clamp(0.9rem, 2vw, 1.1rem);
+        }
+
+        .nav-dots,
+        .keyboard-hint,
+        .decorative {
+          display: none;
+        }
+      }
+
+      @media (max-height: 500px) {
+        :root {
+          --slide-padding: clamp(0.8rem, 2.5vw, 1.5rem);
+          --title-size: clamp(1.25rem, 5vw, 2rem);
+          --h2-size: clamp(1.1rem, 3.5vw, 1.5rem);
+          --body-size: clamp(0.8rem, 1.8vw, 1rem);
+        }
+      }
+
+      @media (max-width: 600px) {
+        :root {
+          --title-size: clamp(1.75rem, 9vw, 3rem);
+          --body-size: clamp(1rem, 3vw, 1.3rem);
+        }
+
+        .grid {
+          grid-template-columns: 1fr;
+        }
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        *,
+        *::before,
+        *::after {
+          animation-duration: 0.01ms !important;
+          transition-duration: 0.2s !important;
+        }
+
+        html {
+          scroll-behavior: auto;
+        }
+      }
+
+      /* Video Background for Slide 1 */
+      .video-background {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        z-index: 0;
+      }
+
+      .video-overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: linear-gradient(
+          135deg,
+          rgba(26, 54, 93, 0.85) 0%,
+          rgba(26, 32, 44, 0.9) 100%
+        );
+        z-index: 1;
+      }
+
+      .video-fallback {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(
+          135deg,
+          #1a365d 0%,
+          #1a202c 50%,
+          #2d3748 100%
+        );
+        z-index: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .video-play-button {
+        position: absolute;
+        bottom: 15%;
+        left: 50%;
+        transform: translateX(-50%);
+        z-index: 20;
+        background: rgba(192, 86, 33, 0.9);
+        color: white;
+        padding: 1rem 2rem;
+        font-family: var(--font-body);
+        font-size: var(--body-size);
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+        text-decoration: none;
+        border: 2px solid rgba(255, 255, 255, 0.3);
+        transition: all 0.3s ease;
+        cursor: pointer;
+      }
+
+      .video-play-button:hover {
+        background: var(--accent-amber);
+        transform: translateX(-50%) translateY(-2px);
+      }
+
+      /* Ensure Slide 1 content is above video */
+      .slide-1 .slide-content {
+        z-index: 10;
+      }
+
+      .slide-1 .section-tabs,
+      .slide-1 .binder-holes,
+      .slide-1 .slide-footer {
+        z-index: 20;
+      }
+
+      /* Paper texture above video */
+      .slide-1 .paper-texture {
+        z-index: 2;
+      }
+
+      /* Adjust content card for video background */
+      .slide-1 .content-card {
+        background: rgba(255, 255, 255, 0.95);
+        border: 2px solid rgba(255, 255, 255, 0.5);
+      }
+
+      /* ===========================================
+           EDITORIAL DESIGN SYSTEM
+           =========================================== */
+
+      /* Content Wrapper - Default centering */
+      .content-wrapper {
+        width: 100%;
+        max-width: min(90vw, 1100px);
+        margin: 0 auto;
+      }
+
+      /* Paper Texture Overlay */
+      .paper-texture {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+        opacity: 0.03;
+        pointer-events: none;
+      }
+
+      /* Binder Holes (Left Side) */
+      .binder-holes {
+        position: absolute;
+        left: 30px;
+        top: 50%;
+        transform: translateY(-50%);
+        display: flex;
+        flex-direction: column;
+        gap: 60px;
+        z-index: 10;
+      }
+
+      .binder-hole {
+        width: 14px;
+        height: 14px;
+        border-radius: 50%;
+        background: var(--accent-warm);
+        border: 2px solid var(--text-secondary);
+        opacity: 0.5;
+      }
+
+      /* Abstract Geometric Shapes */
+      .geo-circle {
+        position: absolute;
+        width: 200px;
+        height: 200px;
+        border: 3px solid var(--accent-copper);
+        border-radius: 50%;
+        top: 10%;
+        right: 8%;
+        opacity: 0.4;
+      }
+
+      .geo-line {
+        position: absolute;
+        width: 150px;
+        height: 2px;
+        background: var(--accent-amber);
+        bottom: 20%;
+        left: 5%;
+        opacity: 0.6;
+      }
+
+      .geo-dot {
+        position: absolute;
+        width: 12px;
+        height: 12px;
+        background: var(--accent-copper);
+        border-radius: 50%;
+        bottom: 20%;
+        left: calc(5% + 150px);
+        transform: translateY(-50%);
+      }
+
+      /* Section Tabs (Right Edge) */
+      .section-tabs {
+        position: absolute;
+        right: 0;
+        top: 50%;
+        transform: translateY(-50%);
+        display: flex;
+        flex-direction: column;
+        gap: 4px;
+        z-index: 10;
+      }
+
+      .tab {
+        width: 28px;
+        border-radius: 4px 0 0 4px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-family: var(--font-body);
+        font-size: clamp(0.5rem, 1vh, 0.7rem);
+        font-weight: 600;
+        color: white;
+        writing-mode: vertical-rl;
+        text-orientation: mixed;
+        padding: 0.5rem 0;
+        transition: all 0.3s ease;
+        cursor: pointer;
+      }
+
+      .tab:nth-child(1) {
+        height: 50px;
+        background: var(--accent-copper);
+      }
+
+      .tab:nth-child(2) {
+        height: 70px;
+        background: #d97706;
+      }
+
+      .tab:nth-child(3) {
+        height: 90px;
+        background: var(--accent-amber);
+      }
+
+      .tab:nth-child(4) {
+        height: 70px;
+        background: #b45309;
+      }
+
+      .tab:nth-child(5) {
+        height: 50px;
+        background: var(--accent-copper);
+      }
+
+      .tab.active {
+        width: 32px;
+        box-shadow: -4px 0 12px rgba(192, 86, 33, 0.3);
+      }
+
+      /* Footer */
+      .slide-footer {
+        position: absolute;
+        bottom: var(--slide-padding);
+        left: var(--slide-padding);
+        right: var(--slide-padding);
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        z-index: 10;
+        pointer-events: none;
+      }
+
+      .footer-left {
+        font-family: var(--font-body);
+        font-size: clamp(0.85rem, 1.5vw, 1.1rem);
+        font-weight: 500;
+        color: var(--text-secondary);
+      }
+
+      .footer-right {
+        font-family: var(--font-body);
+        font-size: clamp(0.85rem, 1.5vw, 1.1rem);
+        font-weight: 600;
+        color: var(--accent-copper);
+      }
+
+      /* Content Card Base */
+      .content-card {
+        background: rgba(255, 255, 255, 0.7);
+        backdrop-filter: blur(10px);
+        padding: clamp(2rem, 5vw, 4rem);
+        max-width: min(90vw, 1000px);
+        width: 100%;
+        border: 1px solid rgba(26, 54, 93, 0.1);
+        box-shadow: 0 20px 60px rgba(26, 54, 93, 0.08);
+        position: relative;
+        z-index: 5;
+        margin: 0 auto;
+      }
+
+      .card-corner {
+        position: absolute;
+        width: 40px;
+        height: 40px;
+      }
+
+      .card-corner.top-left {
+        top: -2px;
+        left: -2px;
+        border-top: 3px solid var(--accent-copper);
+        border-left: 3px solid var(--accent-copper);
+      }
+
+      .card-corner.bottom-right {
+        bottom: -2px;
+        right: -2px;
+        border-bottom: 3px solid var(--accent-copper);
+        border-right: 3px solid var(--accent-copper);
+      }
+
+      /* Typography Utilities */
+      .section-label {
+        font-family: var(--font-body);
+        font-size: clamp(0.85rem, 1.8vw, 1.1rem);
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 0.2em;
+        color: var(--accent-copper);
+        margin-bottom: 1rem;
+      }
+
+      .headline {
+        font-family: var(--font-display);
+        font-size: var(--title-size);
+        font-weight: 900;
+        color: var(--text-primary);
+        line-height: 1.1;
+        margin-bottom: 1rem;
+      }
+
+      .headline span,
+      .headline em {
+        color: var(--accent-copper);
+        font-style: italic;
+      }
+
+      .h2 {
+        font-family: var(--font-display);
+        font-size: var(--h2-size);
+        font-weight: 700;
+        color: var(--text-primary);
+        line-height: 1.2;
+        margin-bottom: 1rem;
+      }
+
+      .h3 {
+        font-family: var(--font-body);
+        font-size: var(--h3-size);
+        font-weight: 600;
+        color: var(--text-primary);
+        line-height: 1.3;
+        margin-bottom: 0.75rem;
+      }
+
+      .subtitle {
+        font-family: var(--font-body);
+        font-size: var(--body-size);
+        font-weight: 400;
+        color: var(--text-secondary);
+        line-height: 1.6;
+      }
+
+      .body-text {
+        font-family: var(--font-body);
+        font-size: var(--body-size);
+        font-weight: 400;
+        color: var(--text-secondary);
+        line-height: 1.7;
+      }
+
+      .small-text {
+        font-family: var(--font-body);
+        font-size: var(--small-size);
+        font-weight: 400;
+        color: var(--text-secondary);
+        line-height: 1.5;
+      }
+
+      /* Elegant Rule */
+      .rule {
+        width: 100px;
+        height: 3px;
+        background: linear-gradient(
+          to right,
+          var(--accent-copper),
+          var(--accent-amber)
+        );
+        margin: 1.5rem 0;
+      }
+
+      .rule.center {
+        margin: 1.5rem auto;
+      }
+
+      /* Pull Quote */
+      .pull-quote {
+        font-family: var(--font-display);
+        font-size: clamp(1.4rem, 3vw, 2.2rem);
+        font-weight: 700;
+        font-style: italic;
+        color: var(--text-primary);
+        line-height: 1.4;
+        border-left: 3px solid var(--accent-copper);
+        padding-left: 1.5rem;
+        margin: 1.5rem 0;
+      }
+
+      /* Stats Box */
+      .stat-box {
+        background: var(--accent-copper);
+        color: white;
+        padding: 1.5rem 2rem;
+        text-align: center;
+      }
+
+      .stat-number {
+        font-family: var(--font-display);
+        font-size: clamp(2.5rem, 5vw, 4rem);
+        font-weight: 900;
+        display: block;
+      }
+
+      .stat-label {
+        font-family: var(--font-body);
+        font-size: var(--small-size);
+        font-weight: 500;
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+        opacity: 0.9;
+      }
+
+      /* Feature List */
+      .feature-list {
+        list-style: none;
+        padding: 0;
+      }
+
+      .feature-list li {
+        position: relative;
+        padding-left: 1.5rem;
+        margin-bottom: 0.75rem;
+      }
+
+      .feature-list li::before {
+        content: "→";
+        position: absolute;
+        left: 0;
+        color: var(--accent-copper);
+        font-weight: 600;
+      }
+
+      /* Navigation Dots */
+      .nav-dots {
+        position: fixed;
+        right: 50px;
+        top: 50%;
+        transform: translateY(-50%);
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+        z-index: 1000;
+      }
+
+      .nav-dot {
+        width: 14px;
+        height: 14px;
+        border-radius: 50%;
+        background: var(--steel-blue);
+        opacity: 0.4;
+        cursor: pointer;
+        transition: all 0.3s ease;
+      }
+
+      .nav-dot:hover {
+        opacity: 0.7;
+        transform: scale(1.2);
+      }
+
+      .nav-dot.active {
+        background: var(--accent-copper);
+        opacity: 1;
+        transform: scale(1.3);
+      }
+
+      /* Keyboard Hint */
+      .keyboard-hint {
+        position: fixed;
+        bottom: 20px;
+        left: 50%;
+        transform: translateX(-50%);
+        font-family: var(--font-body);
+        font-size: 0.75rem;
+        color: var(--text-secondary);
+        opacity: 0.6;
+        z-index: 1000;
+      }
+
+      /* Progress Bar */
+      .progress-bar {
+        position: fixed;
+        top: 0;
+        left: 0;
+        height: 3px;
+        background: linear-gradient(
+          to right,
+          var(--accent-copper),
+          var(--accent-amber)
+        );
+        z-index: 1001;
+        transition: width 0.3s ease;
+      }
+
+      /* ===========================================
+           ANIMATIONS
+           =========================================== */
+      .reveal {
+        opacity: 0;
+        transform: translateY(30px);
+        transition:
+          opacity var(--duration-normal) var(--ease-out-expo),
+          transform var(--duration-normal) var(--ease-out-expo);
+      }
+
+      .slide.visible .reveal {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      .reveal:nth-child(1) {
+        transition-delay: 0.1s;
+      }
+
+      .reveal:nth-child(2) {
+        transition-delay: 0.2s;
+      }
+
+      .reveal:nth-child(3) {
+        transition-delay: 0.3s;
+      }
+
+      .reveal:nth-child(4) {
+        transition-delay: 0.4s;
+      }
+
+      .reveal:nth-child(5) {
+        transition-delay: 0.5s;
+      }
+
+      .reveal:nth-child(6) {
+        transition-delay: 0.6s;
+      }
+
+      /* Foreshadow text styling - use color instead of opacity */
+      .foreshadow-text {
+        color: var(--steel-blue);
+      }
+
+      /* Slide-specific layouts */
+
+      /* Slide 1: Title */
+      .slide-1 .slide-content {
+        align-items: center;
+        text-align: center;
+      }
+
+      .slide-1 .content-card {
+        text-align: center;
+      }
+
+      .slide-1 .rule {
+        margin: 1.5rem auto;
+      }
+
+      /* Slide 2: Builder Legacy */
+      .slide-2 .content-wrapper {
+        max-width: min(80vw, 900px);
+      }
+
+      .legacy-grid {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 2rem;
+        margin-top: 2rem;
+      }
+
+      .legacy-item {
+        text-align: center;
+        padding: 1rem;
+      }
+
+      .legacy-icon {
+        font-size: 2.5rem;
+        margin-bottom: 0.5rem;
+      }
+
+      .legacy-item h4 {
+        font-family: var(--font-body);
+        font-size: var(--small-size);
+        font-weight: 600;
+        color: var(--text-primary);
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+        margin-bottom: 0.25rem;
+      }
+
+      .legacy-item p {
+        font-family: var(--font-body);
+        font-size: var(--small-size);
+        color: var(--text-secondary);
+      }
+
+      /* Slide 3: New Revolution */
+      .slide-3 .slide-content {
+        align-items: center;
+        text-align: center;
+      }
+
+      .revolution-tagline {
+        font-family: var(--font-display);
+        font-size: clamp(1.5rem, 3vw, 2.5rem);
+        font-weight: 700;
+        font-style: italic;
+        color: var(--accent-copper);
+        margin-top: 1rem;
+      }
+
+      /* Slides 4-6: Rosie Story */
+      .story-slide .content-wrapper {
+        max-width: min(85vw, 1000px);
+      }
+
+      .story-header {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        margin-bottom: 1.5rem;
+      }
+
+      .story-badge {
+        background: var(--accent-copper);
+        color: white;
+        padding: 0.5rem 1rem;
+        font-family: var(--font-body);
+        font-size: var(--small-size);
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+      }
+
+      .story-content {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 3rem;
+        align-items: center;
+      }
+
+      .story-image {
+        border-radius: 8px;
+        box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+        max-height: min(45vh, 350px);
+        object-fit: cover;
+      }
+
+      .story-text h3 {
+        margin-bottom: 1rem;
+      }
+
+      .story-tools {
+        display: flex;
+        gap: 1rem;
+        margin: 1rem 0;
+      }
+
+      .tool-tag {
+        background: rgba(192, 86, 33, 0.1);
+        border: 1px solid var(--accent-copper);
+        padding: 0.4rem 0.8rem;
+        font-family: var(--font-body);
+        font-size: var(--small-size);
+        font-weight: 500;
+        color: var(--accent-copper);
+      }
+
+      /* Slide 7: Transition */
+      .slide-7 .slide-content {
+        align-items: center;
+        text-align: center;
+      }
+
+      .transition-arrow {
+        font-size: 3rem;
+        color: var(--accent-copper);
+        margin: 1rem 0;
+      }
+
+      /* Slides 8-10: Qconcursos Story */
+      .stats-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 1.5rem;
+        margin-top: 2rem;
+      }
+
+      /* Slide 11: The Pattern */
+      .pattern-grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 2rem;
+        margin-top: 2rem;
+      }
+
+      .pattern-card {
+        background: rgba(255, 255, 255, 0.5);
+        padding: 2rem;
+        border-left: 3px solid var(--accent-copper);
+      }
+
+      .pattern-card h4 {
+        font-family: var(--font-body);
+        font-size: var(--small-size);
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+        color: var(--accent-copper);
+        margin-bottom: 0.5rem;
+      }
+
+      /* Slides 12-14: Self Improving OS */
+      .os-features {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1.5rem;
+        margin-top: 2rem;
+      }
+
+      .os-feature {
+        background: rgba(255, 255, 255, 0.5);
+        padding: 1.5rem;
+        border: 1px solid rgba(26, 54, 93, 0.1);
+      }
+
+      .os-feature h4 {
+        font-family: var(--font-body);
+        font-weight: 600;
+        color: var(--text-primary);
+        margin-bottom: 0.5rem;
+      }
+
+      /* Slide 15: CTA */
+      .slide-15 .slide-content {
+        align-items: center;
+        text-align: center;
+      }
+
+      .cta-headline {
+        font-size: clamp(2rem, 5vw, 4rem);
+      }
+
+      .cta-button {
+        display: inline-block;
+        background: var(--accent-copper);
+        color: white;
+        padding: 1rem 2.5rem;
+        font-family: var(--font-body);
+        font-size: var(--body-size);
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+        text-decoration: none;
+        margin-top: 2rem;
+        transition: all 0.3s ease;
+      }
+
+      .cta-button:hover {
+        background: var(--accent-amber);
+        transform: translateY(-2px);
+      }
+
+      /* Responsive layouts - Handle both small screens AND zoom */
+      @media (max-width: 1024px), (max-height: 800px) {
+        .story-content,
+        .pattern-grid,
+        .os-features {
+          grid-template-columns: 1fr;
+          gap: 2rem;
+        }
+
+        .legacy-grid {
+          grid-template-columns: repeat(3, 1fr);
+          gap: 1.5rem;
+        }
+
+        .stats-grid {
+          grid-template-columns: repeat(3, 1fr);
+        }
+      }
+
+      @media (max-width: 768px), (max-height: 600px) {
+        .story-content,
+        .pattern-grid,
+        .os-features {
+          grid-template-columns: 1fr;
+        }
+
+        .legacy-grid {
+          grid-template-columns: 1fr;
+          gap: 1rem;
+        }
+
+        .stats-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .binder-holes {
+          display: none;
+        }
+
+        .section-tabs {
+          display: none;
+        }
+
+        .nav-dots {
+          right: 20px;
+        }
+      }
+
+      /* Hide decorative elements on small screens */
+      @media (max-width: 600px), (max-height: 500px) {
+        .geo-circle,
+        .geo-line,
+        .geo-dot {
+          display: none;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <!-- Progress Bar -->
+    <div class="progress-bar" id="progressBar"></div>
+
+    <!-- Navigation Dots -->
+    <nav class="nav-dots" id="navDots"></nav>
+
+    <!-- Keyboard Hint -->
+    <div class="keyboard-hint">Use ↑ ↓ or Space to navigate</div>
+
+    <!-- SLIDE 1: Title -->
+    <section class="slide slide-1" id="slide-1">
+      <!-- Video Background -->
+      <video class="video-background" autoplay muted loop playsinline>
+        <source src="assets/videos/nation-of-builders.mp4" type="video/mp4" />
+      </video>
+      <div class="video-overlay"></div>
+
+      <div class="paper-texture"></div>
+
+      <div class="binder-holes">
+        <div class="binder-hole"></div>
+        <div class="binder-hole"></div>
+        <div class="binder-hole"></div>
+      </div>
+
+      <div class="geo-circle"></div>
+      <div class="geo-line"></div>
+      <div class="geo-dot"></div>
+
+      <div class="section-tabs">
+        <div class="tab active" data-slide="1">01</div>
+        <div class="tab" data-slide="2">02</div>
+        <div class="tab" data-slide="3">03</div>
+        <div class="tab" data-slide="4">04</div>
+        <div class="tab" data-slide="5">05</div>
+      </div>
+
+      <div class="slide-content">
+        <div class="content-card">
+          <div class="card-corner top-left"></div>
+          <div class="card-corner bottom-right"></div>
+
+          <div class="section-label reveal">Fasse AI Lab Presents</div>
+          <h1 class="headline reveal">A Nation of <em>Builders</em></h1>
+          <div class="rule center reveal"></div>
+          <p class="subtitle reveal">
+            The next industrial revolution is here. Not of steam and steel, but
+            of intelligence in the hands of builders.
+          </p>
+        </div>
+      </div>
+
+      <div class="slide-footer">
+        <div class="footer-left">The New Industrial Revolution</div>
+        <div class="footer-right">01 / 15</div>
+      </div>
+    </section>
+
+    <!-- SLIDE 2: Builder Legacy -->
+    <section class="slide slide-2" id="slide-2">
+      <div class="paper-texture"></div>
+
+      <div class="binder-holes">
+        <div class="binder-hole"></div>
+        <div class="binder-hole"></div>
+        <div class="binder-hole"></div>
+      </div>
+
+      <div class="section-tabs">
+        <div class="tab" data-slide="1">01</div>
+        <div class="tab active" data-slide="2">02</div>
+        <div class="tab" data-slide="3">03</div>
+        <div class="tab" data-slide="4">04</div>
+        <div class="tab" data-slide="5">05</div>
+      </div>
+
+      <div class="slide-content">
+        <div class="content-wrapper">
+          <div class="section-label reveal">Our Heritage</div>
+          <h2 class="h2 reveal">
+            America has always been a nation of
+            <span style="color: var(--accent-copper)">builders</span>
+          </h2>
+          <div class="rule reveal"></div>
+
+          <div class="legacy-grid reveal">
+            <div class="legacy-item">
+              <div class="legacy-icon">🏭</div>
+              <h4>Factories</h4>
+              <p>
+                Transformed raw materials into products that changed the world
+              </p>
+            </div>
+            <div class="legacy-item">
+              <div class="legacy-icon">🚂</div>
+              <h4>Railroads</h4>
+              <p>Connected distant places, enabling commerce and community</p>
+            </div>
+            <div class="legacy-item">
+              <div class="legacy-icon">🌉</div>
+              <h4>Skyscrapers</h4>
+              <p>Reached toward the sky, expanding what was possible</p>
+            </div>
+            <div class="legacy-item">
+              <div class="legacy-icon">💻</div>
+              <h4>Computers</h4>
+              <p>Connected the world and unlocked infinite potential</p>
+            </div>
+          </div>
+
+          <p class="pull-quote reveal" style="margin-top: 2rem">
+            "We built the tools, then the tools built us into a global power."
+          </p>
+          <p
+            class="small-text reveal foreshadow-text"
+            style="margin-top: 1rem; font-style: italic"
+          >
+            Now a new generation of tools is putting extraordinary leverage in
+            the hands of determined people.
+          </p>
+        </div>
+      </div>
+
+      <div class="slide-footer">
+        <div class="footer-left">Builder Legacy</div>
+        <div class="footer-right">02 / 15</div>
+      </div>
+    </section>
+
+    <!-- SLIDE 3: New Industrial Revolution -->
+    <section class="slide slide-3" id="slide-3">
+      <div class="paper-texture"></div>
+
+      <div class="binder-holes">
+        <div class="binder-hole"></div>
+        <div class="binder-hole"></div>
+        <div class="binder-hole"></div>
+      </div>
+
+      <div class="geo-circle" style="top: 5%; right: 5%"></div>
+      <div class="geo-line" style="bottom: 15%; left: 8%"></div>
+
+      <div class="section-tabs">
+        <div class="tab" data-slide="1">01</div>
+        <div class="tab" data-slide="2">02</div>
+        <div class="tab active" data-slide="3">03</div>
+        <div class="tab" data-slide="4">04</div>
+        <div class="tab" data-slide="5">05</div>
+      </div>
+
+      <div class="slide-content">
+        <div class="content-card">
+          <div class="card-corner top-left"></div>
+          <div class="card-corner bottom-right"></div>
+
+          <div class="section-label reveal">The Present</div>
+          <h1 class="headline reveal">
+            A New Industrial <span>Revolution</span>
+          </h1>
+          <div class="rule center reveal"></div>
+          <p class="subtitle reveal">
+            This time, the raw material is intelligence. The machinery is
+            software. The opportunity is a more capable nation.
+          </p>
+          <p class="revolution-tagline reveal">
+            More possible than you imagined.
+          </p>
+        </div>
+      </div>
+
+      <div class="slide-footer">
+        <div class="footer-left">The New Industrial Revolution</div>
+        <div class="footer-right">03 / 15</div>
+      </div>
+    </section>
+
+    <!-- SLIDE 4: Rosie Story - The Problem -->
+    <section class="slide story-slide slide-4" id="slide-4">
+      <div class="paper-texture"></div>
+
+      <div class="binder-holes">
+        <div class="binder-hole"></div>
+        <div class="binder-hole"></div>
+        <div class="binder-hole"></div>
+      </div>
+
+      <div class="section-tabs">
+        <div class="tab" data-slide="1">01</div>
+        <div class="tab" data-slide="2">02</div>
+        <div class="tab" data-slide="3">03</div>
+        <div class="tab active" data-slide="4">04</div>
+        <div class="tab" data-slide="5">05</div>
+      </div>
+
+      <div class="slide-content">
+        <div class="content-wrapper">
+          <div class="story-header reveal">
+            <div class="story-badge">Real Story</div>
+            <span class="small-text">Sydney, Australia — December 2024</span>
+          </div>
+
+          <div class="story-content">
+            <div class="story-text reveal">
+              <h3 class="h3">AI Treats Cancer in Dog</h3>
+              <p class="body-text">
+                Paul Conyngham's 8-year-old dog Rosie was diagnosed with an
+                aggressive cancer. The prognosis was grim.
+              </p>
+              <p class="body-text" style="margin-top: 1rem">
+                Standard care offered months, not years.
+              </p>
+              <p class="pull-quote" style="margin-top: 1.5rem">
+                "I wasn't ready to give up on her."
+              </p>
+            </div>
+            <div class="reveal">
+              <img
+                src="assets/images/rosie-twitter.png"
+                alt="Paul with Rosie"
+                class="story-image"
+              />
+              <p
+                class="small-text"
+                style="text-align: center; margin-top: 0.5rem"
+              >
+                Paul and Rosie
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="slide-footer">
+        <div class="footer-left">Case Study: Rosie's Vaccine</div>
+        <div class="footer-right">04 / 15</div>
+      </div>
+    </section>
+
+    <!-- SLIDE 5: Rosie Story - The Result -->
+    <section class="slide story-slide slide-5" id="slide-5">
+      <div class="paper-texture"></div>
+
+      <div class="binder-holes">
+        <div class="binder-hole"></div>
+        <div class="binder-hole"></div>
+        <div class="binder-hole"></div>
+      </div>
+
+      <div
+        class="geo-circle"
+        style="bottom: 10%; right: 10%; opacity: 0.3"
+      ></div>
+
+      <div class="section-tabs">
+        <div class="tab" data-slide="1">01</div>
+        <div class="tab" data-slide="2">02</div>
+        <div class="tab" data-slide="3">03</div>
+        <div class="tab" data-slide="4">04</div>
+        <div class="tab active" data-slide="5">05</div>
+      </div>
+
+      <div class="slide-content">
+        <div class="content-wrapper">
+          <div class="story-header reveal">
+            <div class="story-badge" style="background: #22c55e">
+              The Result
+            </div>
+            <span class="small-text">February 2025 — Tumor update</span>
+          </div>
+
+          <div class="story-content">
+            <div class="reveal">
+              <h3
+                class="h3"
+                style="
+                  text-align: left;
+                  margin-bottom: 0.5rem;
+                  color: var(--text-primary);
+                "
+              >
+                Custom cancer treatment with AI
+              </h3>
+              <p
+                class="body-text"
+                style="text-align: left; margin-bottom: 1rem"
+              >
+                He created a personalized DNA-based cancer vaccine specifically
+                for Rosie
+              </p>
+              <img
+                src="assets/images/rosie-and-paul.jpg"
+                alt="Rosie with Paul after treatment"
+                class="story-image"
+              />
+              <p
+                class="small-text"
+                style="text-align: center; margin-top: 0.5rem"
+              >
+                Rosie at UNSW RNA Institute
+              </p>
+            </div>
+            <div class="reveal">
+              <div class="stat-box" style="margin-bottom: 1.5rem">
+                <span class="stat-number">50%</span>
+                <span class="stat-label">Tumor Reduction</span>
+              </div>
+              <h3 class="h3">Rosie is thriving</h3>
+              <p class="body-text">
+                The cancerous tumor shrank by half. Rosie received her booster
+                shot in February 2025.
+              </p>
+              <p class="body-text" style="margin-top: 1rem">
+                What would have been impossible a decade ago took one determined
+                person with AI tools.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="slide-footer">
+        <div class="footer-left">Case Study: Rosie's Vaccine</div>
+        <div class="footer-right">05 / 15</div>
+      </div>
+    </section>
+
+    <!-- SLIDE 6: Rosie Story - The Tools -->
+    <section class="slide story-slide slide-6" id="slide-6">
+      <div class="paper-texture"></div>
+
+      <div class="binder-holes">
+        <div class="binder-hole"></div>
+        <div class="binder-hole"></div>
+        <div class="binder-hole"></div>
+      </div>
+
+      <div class="section-tabs">
+        <div class="tab" data-slide="1">01</div>
+        <div class="tab" data-slide="2">02</div>
+        <div class="tab" data-slide="3">03</div>
+        <div class="tab" data-slide="4">04</div>
+        <div class="tab active" data-slide="5">05</div>
+      </div>
+
+      <div class="slide-content">
+        <div class="content-wrapper">
+          <div class="story-header reveal">
+            <div class="story-badge">The Process</div>
+            <span class="small-text">From idea to vaccine in weeks</span>
+          </div>
+
+          <div class="story-content">
+            <div class="reveal">
+              <h3 class="h3">The AI Toolchain</h3>
+              <div class="story-tools">
+                <span class="tool-tag">ChatGPT</span>
+                <span class="tool-tag">AlphaFold</span>
+                <span class="tool-tag">Grok</span>
+              </div>
+              <ul class="feature-list" style="margin-top: 1rem">
+                <li>ChatGPT mapped the treatment pathway</li>
+                <li>UNSW provided DNA sequencing ($3,000)</li>
+                <li>AlphaFold modeled protein structures</li>
+                <li>Grok designed the mRNA construct</li>
+              </ul>
+            </div>
+            <div class="reveal">
+              <div class="stat-box">
+                <span class="stat-number">$3,000</span>
+                <span class="stat-label">Total Cost</span>
+              </div>
+              <p
+                class="small-text"
+                style="text-align: center; margin-top: 1rem"
+              >
+                Compare to millions in traditional pharma R&D
+              </p>
+            </div>
+          </div>
+
+          <p class="pull-quote reveal" style="margin-top: 2rem">
+            "The red tape was actually harder than the vaccine creation."
+          </p>
+        </div>
+      </div>
+
+      <div class="slide-footer">
+        <div class="footer-left">Case Study: Rosie's Vaccine</div>
+        <div class="footer-right">06 / 15</div>
+      </div>
+    </section>
+
+    <!-- SLIDE 7: Transition -->
+    <section class="slide slide-7" id="slide-7">
+      <div class="paper-texture"></div>
+
+      <div class="binder-holes">
+        <div class="binder-hole"></div>
+        <div class="binder-hole"></div>
+        <div class="binder-hole"></div>
+      </div>
+
+      <div class="geo-line" style="top: 30%; left: 15%"></div>
+      <div class="geo-line" style="bottom: 30%; right: 15%"></div>
+
+      <div class="section-tabs">
+        <div class="tab" data-slide="1">01</div>
+        <div class="tab" data-slide="2">02</div>
+        <div class="tab" data-slide="3">03</div>
+        <div class="tab" data-slide="4">04</div>
+        <div class="tab" data-slide="5">05</div>
+      </div>
+
+      <div class="slide-content">
+        <div class="content-card">
+          <div class="card-corner top-left"></div>
+          <div class="card-corner bottom-right"></div>
+
+          <p class="section-label reveal">Scaling Up</p>
+          <p
+            class="subtitle reveal"
+            style="font-size: clamp(1.1rem, 2vw, 1.4rem)"
+          >
+            One person with AI can save a dog.
+          </p>
+          <div class="transition-arrow reveal">↓</div>
+          <h2 class="h2 reveal">
+            What happens when a team gets the same leverage?
+          </h2>
+          <div class="rule center reveal"></div>
+        </div>
+      </div>
+
+      <div class="slide-footer">
+        <div class="footer-left">From Individual to Business</div>
+        <div class="footer-right">07 / 15</div>
+      </div>
+    </section>
+
+    <!-- SLIDE 8: Qconcursos Story - Setup -->
+    <section class="slide story-slide slide-8" id="slide-8">
+      <div class="paper-texture"></div>
+
+      <div class="binder-holes">
+        <div class="binder-hole"></div>
+        <div class="binder-hole"></div>
+        <div class="binder-hole"></div>
+      </div>
+
+      <div class="section-tabs">
+        <div class="tab" data-slide="1">01</div>
+        <div class="tab" data-slide="2">02</div>
+        <div class="tab" data-slide="3">03</div>
+        <div class="tab" data-slide="4">04</div>
+        <div class="tab" data-slide="5">05</div>
+      </div>
+
+      <div class="slide-content">
+        <div class="content-wrapper">
+          <div class="story-header reveal">
+            <div class="story-badge">Business Story</div>
+            <span class="small-text">Brazil — AI Build 2024</span>
+          </div>
+
+          <div class="story-content">
+            <div class="story-text reveal">
+              <h3
+                class="h3"
+                style="
+                  display: flex;
+                  align-items: center;
+                  gap: 0.5rem;
+                  flex-wrap: wrap;
+                "
+              >
+                Qconcursos
+                <span
+                  style="
+                    background: rgba(74, 85, 104, 0.15);
+                    color: var(--text-secondary);
+                    font-size: var(--small-size);
+                    font-weight: 500;
+                    padding: 0.2rem 0.6rem;
+                    border-radius: 4px;
+                  "
+                  >Online Education Platform</span
+                >
+              </h3>
+              <p class="body-text" style="margin-top: 1rem">
+                Learners wanted a tutor, not another course.
+                <strong
+                  >The platform had to deliver AI learning paths—or lose
+                  students.</strong
+                >
+              </p>
+              <p class="body-text" style="margin-top: 1rem">
+                Competitors were building it.<br />
+                <strong>They had two weeks.</strong>
+              </p>
+              <div
+                class="stats-grid"
+                style="
+                  margin-top: 1.5rem;
+                  grid-template-columns: repeat(2, 1fr);
+                "
+              >
+                <div class="stat-box" style="padding: 1rem">
+                  <span class="stat-number" style="font-size: 1.5rem">2</span>
+                  <span class="stat-label">Developers</span>
+                </div>
+                <div
+                  class="stat-box"
+                  style="padding: 1rem; background: var(--accent-amber)"
+                >
+                  <span class="stat-number" style="font-size: 1.5rem">14</span>
+                  <span class="stat-label">Days</span>
+                </div>
+              </div>
+            </div>
+            <div class="reveal">
+              <img
+                src="assets/images/qconcursos-article-header.webp"
+                alt="Qconcursos"
+                class="story-image"
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="slide-footer">
+        <div class="footer-left">Case Study: Qconcursos</div>
+        <div class="footer-right">08 / 15</div>
+      </div>
+    </section>
+
+    <!-- SLIDE 9: Qconcursos Story - Result -->
+    <section class="slide story-slide slide-9" id="slide-9">
+      <div class="paper-texture"></div>
+
+      <div class="binder-holes">
+        <div class="binder-hole"></div>
+        <div class="binder-hole"></div>
+        <div class="binder-hole"></div>
+      </div>
+
+      <div class="geo-circle" style="top: 5%; left: 5%; opacity: 0.2"></div>
+
+      <div class="section-tabs">
+        <div class="tab" data-slide="1">01</div>
+        <div class="tab" data-slide="2">02</div>
+        <div class="tab" data-slide="3">03</div>
+        <div class="tab" data-slide="4">04</div>
+        <div class="tab" data-slide="5">05</div>
+      </div>
+
+      <div class="slide-content">
+        <div class="content-wrapper" style="text-align: center">
+          <div class="story-header reveal" style="justify-content: center">
+            <div class="story-badge" style="background: #22c55e">
+              Launch Result
+            </div>
+          </div>
+
+          <div class="reveal">
+            <div
+              class="stat-box"
+              style="display: inline-block; padding: 2rem 3rem"
+            >
+              <span class="stat-number">$3M</span>
+              <span class="stat-label">Revenue in 48 Hours</span>
+            </div>
+          </div>
+
+          <p class="pull-quote reveal" style="margin-top: 2rem">
+            "AI amplifies existing advantages. It does not create them from
+            nothing."
+          </p>
+          <p class="small-text reveal" style="margin-top: 0.5rem">
+            — Caio Moretti, CEO of Qconcursos
+          </p>
+
+          <div
+            class="stats-grid reveal"
+            style="grid-template-columns: repeat(3, 1fr); margin-top: 2rem"
+          >
+            <div style="text-align: center">
+              <p class="h3" style="color: var(--accent-copper)">2 Devs</p>
+              <p class="small-text">Small team</p>
+            </div>
+            <div style="text-align: center">
+              <p class="h3" style="color: var(--accent-copper)">14 Days</p>
+              <p class="small-text">Fast build</p>
+            </div>
+            <div style="text-align: center">
+              <p class="h3" style="color: var(--accent-copper)">$3M</p>
+              <p class="small-text">48hr revenue</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="slide-footer">
+        <div class="footer-left">Case Study: Qconcursos</div>
+        <div class="footer-right">09 / 15</div>
+      </div>
+    </section>
+
+    <!-- SLIDE 10: Qconcursos Story - Build -->
+    <section class="slide story-slide slide-10" id="slide-10">
+      <div class="paper-texture"></div>
+
+      <div class="binder-holes">
+        <div class="binder-hole"></div>
+        <div class="binder-hole"></div>
+        <div class="binder-hole"></div>
+      </div>
+
+      <div class="section-tabs">
+        <div class="tab" data-slide="1">01</div>
+        <div class="tab" data-slide="2">02</div>
+        <div class="tab" data-slide="3">03</div>
+        <div class="tab" data-slide="4">04</div>
+        <div class="tab" data-slide="5">05</div>
+      </div>
+
+      <div class="slide-content">
+        <div class="content-wrapper">
+          <div class="story-header reveal">
+            <div class="story-badge">The Build</div>
+            <span class="small-text">AI-native development in practice</span>
+          </div>
+
+          <div class="story-content" style="grid-template-columns: 1fr 1.2fr">
+            <div class="reveal" style="text-align: center">
+              <img
+                src="assets/images/lovable-logo.png"
+                alt="Lovable"
+                style="max-height: 100px; margin-bottom: 1rem"
+              />
+              <p class="small-text">
+                Built using Lovable as part of the workflow
+              </p>
+            </div>
+            <div class="reveal">
+              <h3 class="h3">Compressed execution</h3>
+              <ul class="feature-list">
+                <li>Natural language to working code</li>
+                <li>Visual editing + AI assistance</li>
+                <li>Full-stack delivery in a fraction of the time</li>
+                <li>Small teams moving at institutional speed</li>
+              </ul>
+              <p class="body-text" style="margin-top: 1rem">
+                What traditionally requires months and a larger engineering team
+                took 2 people 2 weeks.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="slide-footer">
+        <div class="footer-left">Case Study: Qconcursos</div>
+        <div class="footer-right">10 / 15</div>
+      </div>
+    </section>
+
+    <!-- SLIDE 11: The Pattern -->
+    <section class="slide slide-11" id="slide-11">
+      <div class="paper-texture"></div>
+
+      <div class="binder-holes">
+        <div class="binder-hole"></div>
+        <div class="binder-hole"></div>
+        <div class="binder-hole"></div>
+      </div>
+
+      <div class="section-tabs">
+        <div class="tab" data-slide="1">01</div>
+        <div class="tab" data-slide="2">02</div>
+        <div class="tab" data-slide="3">03</div>
+        <div class="tab" data-slide="4">04</div>
+        <div class="tab" data-slide="5">05</div>
+      </div>
+
+      <div class="slide-content">
+        <div class="content-wrapper">
+          <div class="section-label reveal">The Pattern</div>
+          <h2 class="h2 reveal">
+            The pattern is bigger than either
+            <span style="color: var(--accent-copper)">story</span>
+          </h2>
+          <div class="rule reveal"></div>
+
+          <div class="pattern-grid reveal">
+            <div class="pattern-card">
+              <h4>Rosie's Story</h4>
+              <p class="body-text">
+                One determined builder + AI tools = custom cancer vaccine
+              </p>
+              <p class="small-text" style="margin-top: 0.5rem">
+                Cost: $3,000<br />Result: 50% tumor reduction
+              </p>
+            </div>
+            <div class="pattern-card">
+              <h4>Qconcursos Story</h4>
+              <p class="body-text">
+                Small team + AI-native workflow = $3M in 48 hours
+              </p>
+              <p class="small-text" style="margin-top: 0.5rem">
+                Team: 2 developers<br />Timeline: 14 days
+              </p>
+            </div>
+          </div>
+
+          <div
+            class="content-card reveal"
+            style="margin-top: 2rem; text-align: center"
+          >
+            <h3 class="h3" style="color: var(--accent-copper)">
+              Capability compounds when intelligence enters the workflow
+            </h3>
+            <p class="body-text">
+              The builder provides the judgment. AI provides the leverage. When
+              the two work together, people and institutions gain speed,
+              clarity, and reach.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div class="slide-footer">
+        <div class="footer-left">The Common Thread</div>
+        <div class="footer-right">11 / 15</div>
+      </div>
+    </section>
+
+    <!-- SLIDE 12: The Opportunity -->
+    <section class="slide slide-12" id="slide-12">
+      <div class="paper-texture"></div>
+
+      <div class="binder-holes">
+        <div class="binder-hole"></div>
+        <div class="binder-hole"></div>
+        <div class="binder-hole"></div>
+      </div>
+
+      <div class="geo-circle" style="bottom: 10%; right: 5%"></div>
+
+      <div class="section-tabs">
+        <div class="tab" data-slide="1">01</div>
+        <div class="tab" data-slide="2">02</div>
+        <div class="tab" data-slide="3">03</div>
+        <div class="tab" data-slide="4">04</div>
+        <div class="tab" data-slide="5">05</div>
+      </div>
+
+      <div class="slide-content">
+        <div class="content-wrapper">
+          <div class="section-label reveal">The Opportunity</div>
+          <h2 class="h2 reveal">
+            The real opportunity is not smarter software.<br />It is a more
+            <span style="color: var(--accent-copper)">capable country</span>.
+          </h2>
+          <div class="rule reveal"></div>
+
+          <div class="content-card reveal" style="margin-top: 1rem">
+            <div class="card-corner top-left"></div>
+            <div class="card-corner bottom-right"></div>
+
+            <h3 class="h3" style="text-align: center; margin-bottom: 1.5rem">
+              A new atmosphere for building
+            </h3>
+            <p class="body-text" style="text-align: center">
+              A country that can build faster, learn faster, heal faster, and
+              respond faster - not by replacing people, but by extending the
+              reach of every builder.
+            </p>
+
+            <div class="os-features">
+              <div class="os-feature">
+                <h4>More agency</h4>
+                <p class="small-text">
+                  Give operators, teams, and institutions more power to act.
+                </p>
+              </div>
+              <div class="os-feature">
+                <h4>Less friction</h4>
+                <p class="small-text">
+                  Remove bureaucracy, delay, and wasted effort from the work.
+                </p>
+              </div>
+              <div class="os-feature">
+                <h4>More ownership</h4>
+                <p class="small-text">
+                  Help customers own their workflows, knowledge, and future.
+                </p>
+              </div>
+              <div class="os-feature">
+                <h4>More capacity</h4>
+                <p class="small-text">
+                  Build systems that leave people and institutions stronger.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="slide-footer">
+        <div class="footer-left">The Opportunity</div>
+        <div class="footer-right">12 / 15</div>
+      </div>
+    </section>
+
+    <!-- SLIDE 13: How We Work -->
+    <section class="slide slide-13" id="slide-13">
+      <div class="paper-texture"></div>
+
+      <div class="binder-holes">
+        <div class="binder-hole"></div>
+        <div class="binder-hole"></div>
+        <div class="binder-hole"></div>
+      </div>
+
+      <div class="section-tabs">
+        <div class="tab" data-slide="1">01</div>
+        <div class="tab" data-slide="2">02</div>
+        <div class="tab" data-slide="3">03</div>
+        <div class="tab" data-slide="4">04</div>
+        <div class="tab" data-slide="5">05</div>
+      </div>
+
+      <div class="slide-content">
+        <div class="content-wrapper">
+          <div class="section-label reveal">How We Work</div>
+          <h2 class="h2 reveal">
+            We turn possibility into
+            <span style="color: var(--accent-copper)"
+              >practical capability</span
+            >
+          </h2>
+          <div class="rule reveal"></div>
+
+          <div
+            class="grid"
+            style="
+              grid-template-columns: repeat(2, 1fr);
+              gap: 1.5rem;
+              margin-top: 1rem;
+            "
+          >
+            <div class="content-card reveal" style="padding: 1.5rem">
+              <h4
+                style="
+                  font-family: var(--font-body);
+                  font-weight: 600;
+                  color: var(--accent-copper);
+                  margin-bottom: 0.5rem;
+                "
+              >
+                Embed intelligence
+              </h4>
+              <p class="small-text">
+                We put AI inside real operations, where decisions are made and
+                work actually happens.
+              </p>
+            </div>
+            <div class="content-card reveal" style="padding: 1.5rem">
+              <h4
+                style="
+                  font-family: var(--font-body);
+                  font-weight: 600;
+                  color: var(--accent-copper);
+                  margin-bottom: 0.5rem;
+                "
+              >
+                Build with the team
+              </h4>
+              <p class="small-text">
+                We work with customers, not around them, so the system reflects
+                their mission and judgment.
+              </p>
+            </div>
+            <div class="content-card reveal" style="padding: 1.5rem">
+              <h4
+                style="
+                  font-family: var(--font-body);
+                  font-weight: 600;
+                  color: var(--accent-copper);
+                  margin-bottom: 0.5rem;
+                "
+              >
+                Create durable capability
+              </h4>
+              <p class="small-text">
+                The goal is not dependence on us. The goal is a stronger,
+                smarter institution over time.
+              </p>
+            </div>
+            <div class="content-card reveal" style="padding: 1.5rem">
+              <h4
+                style="
+                  font-family: var(--font-body);
+                  font-weight: 600;
+                  color: var(--accent-copper);
+                  margin-bottom: 0.5rem;
+                "
+              >
+                Move from pilots to practice
+              </h4>
+              <p class="small-text">
+                We help customers cross the gap between AI excitement and daily,
+                repeatable results.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="slide-footer">
+        <div class="footer-left">How We Work</div>
+        <div class="footer-right">13 / 15</div>
+      </div>
+    </section>
+
+    <!-- SLIDE 14: The Right Customers -->
+    <section class="slide slide-14" id="slide-14">
+      <div class="paper-texture"></div>
+
+      <div class="binder-holes">
+        <div class="binder-hole"></div>
+        <div class="binder-hole"></div>
+        <div class="binder-hole"></div>
+      </div>
+
+      <div class="section-tabs">
+        <div class="tab" data-slide="1">01</div>
+        <div class="tab" data-slide="2">02</div>
+        <div class="tab" data-slide="3">03</div>
+        <div class="tab" data-slide="4">04</div>
+        <div class="tab" data-slide="5">05</div>
+      </div>
+
+      <div class="slide-content">
+        <div class="content-wrapper">
+          <div class="section-label reveal">The Right Customers</div>
+          <h2 class="h2 reveal">
+            We are looking for the
+            <span style="color: var(--accent-copper)">right customers</span
+            ><br />to help build what comes next.
+          </h2>
+          <div class="rule reveal"></div>
+
+          <div class="pattern-grid reveal" style="margin-top: 1.5rem">
+            <div class="pattern-card">
+              <h4>The right customers</h4>
+              <ul class="feature-list" style="font-size: var(--small-size)">
+                <li>Builders with real problems worth solving</li>
+                <li>Leaders who want to strengthen their teams</li>
+                <li>Institutions ready to rethink how work gets done</li>
+                <li>Partners who want to shape the future with us</li>
+              </ul>
+            </div>
+            <div
+              class="pattern-card"
+              style="border-left-color: var(--accent-amber)"
+            >
+              <h4 style="color: var(--accent-amber)">What we bring</h4>
+              <ul class="feature-list" style="font-size: var(--small-size)">
+                <li>Practical systems, not AI theater</li>
+                <li>Speed, craft, and hands-on partnership</li>
+                <li>Technology that fits the mission</li>
+                <li>A commitment to leave the customer stronger</li>
+              </ul>
+            </div>
+          </div>
+
+          <div
+            class="content-card reveal"
+            style="margin-top: 2rem; text-align: center"
+          >
+            <h3 class="h3" style="color: var(--accent-copper)">
+              We are not looking to sell software.
+            </h3>
+            <p class="body-text">
+              We are looking for builders to help create the practical machinery
+              of a more capable future.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div class="slide-footer">
+        <div class="footer-left">The Right Customers</div>
+        <div class="footer-right">14 / 15</div>
+      </div>
+    </section>
+
+    <!-- SLIDE 15: Call to Action -->
+    <section class="slide slide-15" id="slide-15">
+      <div class="paper-texture"></div>
+
+      <div class="binder-holes">
+        <div class="binder-hole"></div>
+        <div class="binder-hole"></div>
+        <div class="binder-hole"></div>
+      </div>
+
+      <div class="geo-circle" style="top: 15%; left: 10%; opacity: 0.3"></div>
+      <div
+        class="geo-circle"
+        style="
+          bottom: 15%;
+          right: 10%;
+          width: 150px;
+          height: 150px;
+          opacity: 0.2;
+        "
+      ></div>
+      <div class="geo-line" style="top: 25%; right: 20%"></div>
+      <div class="geo-line" style="bottom: 25%; left: 20%"></div>
+
+      <div class="section-tabs">
+        <div class="tab" data-slide="1">01</div>
+        <div class="tab" data-slide="2">02</div>
+        <div class="tab" data-slide="3">03</div>
+        <div class="tab" data-slide="4">04</div>
+        <div class="tab" data-slide="5">05</div>
+      </div>
+
+      <div class="slide-content">
+        <div
+          class="content-card"
+          style="text-align: center; max-width: min(80vw, 800px)"
+        >
+          <div class="card-corner top-left"></div>
+          <div class="card-corner bottom-right"></div>
+
+          <div class="section-label reveal">The Question</div>
+          <h1 class="headline cta-headline reveal">
+            What will <em>you</em> build?
+          </h1>
+          <div class="rule center reveal"></div>
+          <p class="subtitle reveal">
+            The tools are here. The revolution is now. The only question is what
+            you'll create with it.
+          </p>
+
+          <a href="#" class="cta-button reveal">Start Building</a>
+
+          <p class="small-text reveal" style="margin-top: 2rem; opacity: 0.7">
+            Fasse AI Lab — Tools for extraordinary builders
+          </p>
+        </div>
+      </div>
+
+      <div class="slide-footer">
+        <div class="footer-left">Fasse AI Lab</div>
+        <div class="footer-right">15 / 15</div>
+      </div>
+    </section>
+
+    <script>
+      /* ===========================================
+SLIDE PRESENTATION CONTROLLER
+=========================================== */
+      class SlidePresentation {
+        constructor() {
+          this.slides = document.querySelectorAll(".slide");
+          this.currentSlide = 0;
+          this.totalSlides = this.slides.length;
+          this.isScrolling = false;
+
+          this.setupIntersectionObserver();
+          this.setupKeyboardNav();
+          this.setupTouchNav();
+          this.setupNavDots();
+          this.setupTabs();
+          this.setupProgressBar();
+        }
+
+        setupIntersectionObserver() {
+          const options = {
+            root: null,
+            rootMargin: "0px",
+            threshold: 0.5,
+          };
+
+          const observer = new IntersectionObserver((entries) => {
+            entries.forEach((entry) => {
+              if (entry.isIntersecting) {
+                entry.target.classList.add("visible");
+                this.currentSlide = Array.from(this.slides).indexOf(
+                  entry.target,
+                );
+                this.updateNavDots();
+                this.updateTabs();
+                this.updateProgressBar();
+              }
+            });
+          }, options);
+
+          this.slides.forEach((slide) => observer.observe(slide));
+        }
+
+        setupKeyboardNav() {
+          document.addEventListener("keydown", (e) => {
+            if (e.target.getAttribute("contenteditable")) return;
+
+            switch (e.key) {
+              case "ArrowDown":
+              case "ArrowRight":
+              case " ":
+              case "PageDown":
+                e.preventDefault();
+                this.nextSlide();
+                break;
+              case "ArrowUp":
+              case "ArrowLeft":
+              case "PageUp":
+                e.preventDefault();
+                this.prevSlide();
+                break;
+              case "Home":
+                e.preventDefault();
+                this.goToSlide(0);
+                break;
+              case "End":
+                e.preventDefault();
+                this.goToSlide(this.totalSlides - 1);
+                break;
+            }
+          });
+        }
+
+        setupTouchNav() {
+          let touchStartY = 0;
+          let touchEndY = 0;
+
+          document.addEventListener(
+            "touchstart",
+            (e) => {
+              touchStartY = e.changedTouches[0].screenY;
+            },
+            { passive: true },
+          );
+
+          document.addEventListener(
+            "touchend",
+            (e) => {
+              touchEndY = e.changedTouches[0].screenY;
+              this.handleSwipe(touchStartY, touchEndY);
+            },
+            { passive: true },
+          );
+        }
+
+        handleSwipe(startY, endY) {
+          const threshold = 50;
+          const diff = startY - endY;
+
+          if (Math.abs(diff) > threshold) {
+            if (diff > 0) {
+              this.nextSlide();
+            } else {
+              this.prevSlide();
+            }
+          }
+        }
+
+        setupNavDots() {
+          const navContainer = document.getElementById("navDots");
+          if (!navContainer) return;
+
+          this.slides.forEach((_, index) => {
+            const dot = document.createElement("div");
+            dot.className = "nav-dot" + (index === 0 ? " active" : "");
+            dot.addEventListener("click", () => this.goToSlide(index));
+            navContainer.appendChild(dot);
+          });
+        }
+
+        setupTabs() {
+          const tabs = document.querySelectorAll(".tab");
+          tabs.forEach((tab) => {
+            tab.addEventListener("click", () => {
+              const slideNum = parseInt(tab.dataset.slide);
+              if (slideNum) {
+                this.goToSlide(slideNum - 1);
+              }
+            });
+          });
+        }
+
+        setupProgressBar() {
+          this.progressBar = document.getElementById("progressBar");
+          this.updateProgressBar();
+        }
+
+        updateNavDots() {
+          const dots = document.querySelectorAll(".nav-dot");
+          dots.forEach((dot, index) => {
+            dot.classList.toggle("active", index === this.currentSlide);
+          });
+        }
+
+        updateTabs() {
+          // Update tabs based on slide sections
+          const sectionMap = {
+            0: 1,
+            1: 1,
+            2: 1, // Intro
+            3: 2,
+            4: 2,
+            5: 2, // Rosie
+            6: 3,
+            7: 3,
+            8: 3,
+            9: 3, // Qconcursos
+            10: 4,
+            11: 4,
+            12: 4,
+            13: 4, // OS
+            14: 5, // CTA
+          };
+
+          const activeSection = sectionMap[this.currentSlide] || 1;
+          document.querySelectorAll(".tab").forEach((tab, index) => {
+            tab.classList.toggle("active", index + 1 === activeSection);
+          });
+        }
+
+        updateProgressBar() {
+          if (this.progressBar) {
+            const progress = ((this.currentSlide + 1) / this.totalSlides) * 100;
+            this.progressBar.style.width = progress + "%";
+          }
+        }
+
+        nextSlide() {
+          if (this.currentSlide < this.totalSlides - 1) {
+            this.goToSlide(this.currentSlide + 1);
+          }
+        }
+
+        prevSlide() {
+          if (this.currentSlide > 0) {
+            this.goToSlide(this.currentSlide - 1);
+          }
+        }
+
+        goToSlide(index) {
+          if (index >= 0 && index < this.totalSlides) {
+            this.slides[index].scrollIntoView({ behavior: "smooth" });
+          }
+        }
+      }
+
+      // Initialize presentation
+      document.addEventListener("DOMContentLoaded", () => {
+        new SlidePresentation();
+      });
+    </script>
+  </body>
+</html>
