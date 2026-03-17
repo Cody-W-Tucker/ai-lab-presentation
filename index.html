@@ -193,16 +193,33 @@
         }
       }
 
-      @media (prefers-reduced-motion: reduce) {
-        *,
-        *::before,
-        *::after {
-          animation-duration: 0.01ms !important;
-          transition-duration: 0.2s !important;
+      /* ===========================================
+           MOBILE: DISABLE SLIDE CONTROLLER
+           =========================================== */
+      @media (pointer: coarse), (max-width: 768px) {
+        html {
+          scroll-snap-type: none;
+          scroll-behavior: auto;
         }
 
-        html {
-          scroll-behavior: auto;
+        .slide {
+          height: auto;
+          min-height: 100vh;
+          min-height: 100dvh;
+          scroll-snap-align: none;
+          overflow: visible;
+        }
+
+        .slide-content {
+          overflow: visible;
+          padding: var(--slide-padding);
+        }
+
+        .nav-dots,
+        .keyboard-hint,
+        .progress-bar,
+        .slide-footer {
+          display: none !important;
         }
       }
 
@@ -2280,9 +2297,28 @@ SLIDE PRESENTATION CONTROLLER
         }
       }
 
-      // Initialize presentation
+      // Initialize presentation (skip on mobile for normal scrolling)
       document.addEventListener("DOMContentLoaded", () => {
-        new SlidePresentation();
+        const isMobile = window.matchMedia('(pointer: coarse)').matches || 
+                        window.matchMedia('(max-width: 768px)').matches;
+        
+        if (!isMobile) {
+          new SlidePresentation();
+        } else {
+          // On mobile: hide nav dots and progress bar, allow normal scroll
+          const navDots = document.getElementById('navDots');
+          const progressBar = document.getElementById('progressBar');
+          const keyboardHint = document.querySelector('.keyboard-hint');
+          
+          if (navDots) navDots.style.display = 'none';
+          if (progressBar) progressBar.style.display = 'none';
+          if (keyboardHint) keyboardHint.style.display = 'none';
+          
+          // Make all slides visible for reveal animations
+          document.querySelectorAll('.slide').forEach(slide => {
+            slide.classList.add('visible');
+          });
+        }
       });
     </script>
   </body>
