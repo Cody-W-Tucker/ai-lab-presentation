@@ -7,19 +7,31 @@
 
     <!-- Open Graph / Social Media Meta Tags -->
     <meta property="og:title" content="Fasse AI Lab — A Nation of Builders" />
-    <meta property="og:description" content="The next industrial revolution is here. Not of steam and steel, but of intelligence in the hands of builders." />
-    <meta property="og:image" content="https://fasse.ai/assets/images/og-image.png" />
+    <meta
+      property="og:description"
+      content="The next industrial revolution is here. Not of steam and steel, but of intelligence in the hands of builders."
+    />
+    <meta
+      property="og:image"
+      content="https://fasse.ai/assets/images/og-image.png"
+    />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
     <meta property="og:url" content="https://fasse.ai" />
     <meta property="og:type" content="website" />
     <meta property="og:site_name" content="Fasse AI Lab" />
-    
+
     <!-- Twitter Card Meta Tags -->
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content="Fasse AI Lab — A Nation of Builders" />
-    <meta name="twitter:description" content="The next industrial revolution is here. Not of steam and steel, but of intelligence in the hands of builders." />
-    <meta name="twitter:image" content="https://fasse.ai/assets/images/og-image.png" />
+    <meta
+      name="twitter:description"
+      content="The next industrial revolution is here. Not of steam and steel, but of intelligence in the hands of builders."
+    />
+    <meta
+      name="twitter:image"
+      content="https://fasse.ai/assets/images/og-image.png"
+    />
 
     <!-- Fonts: Editorial serif + clean sans -->
     <link
@@ -1910,7 +1922,7 @@
               <div class="os-feature">
                 <h4>End the rental model</h4>
                 <p class="small-text">
-                  Not another subscription. Systems you own completely.
+                  Not another subscription. Results you own completely.
                 </p>
               </div>
             </div>
@@ -2082,7 +2094,9 @@
                 <li>Practical systems, not AI theater</li>
                 <li>Speed, craft, and hands-on partnership</li>
                 <li>Technology that fits the mission</li>
-                <li>A commitment to push past current limits into what's next</li>
+                <li>
+                  A commitment to push past current limits into what's next
+                </li>
               </ul>
             </div>
           </div>
@@ -2111,7 +2125,11 @@
     <!-- SLIDE 15: Call to Action -->
     <section class="slide slide-15" id="slide-15">
       <!-- Image Background -->
-      <img src="assets/images/signing-contract.jpg" alt="People signing contract" class="image-background" />
+      <img
+        src="assets/images/signing-contract.jpg"
+        alt="People signing contract"
+        class="image-background"
+      />
       <div class="image-overlay"></div>
 
       <div class="paper-texture"></div>
@@ -2374,24 +2392,25 @@ SLIDE PRESENTATION CONTROLLER
 
       // Initialize presentation (skip on mobile for normal scrolling)
       document.addEventListener("DOMContentLoaded", () => {
-        const isMobile = window.matchMedia('(pointer: coarse)').matches || 
-                        window.matchMedia('(max-width: 768px)').matches;
-        
+        const isMobile =
+          window.matchMedia("(pointer: coarse)").matches ||
+          window.matchMedia("(max-width: 768px)").matches;
+
         if (!isMobile) {
           new SlidePresentation();
         } else {
           // On mobile: hide nav dots and progress bar, allow normal scroll
-          const navDots = document.getElementById('navDots');
-          const progressBar = document.getElementById('progressBar');
-          const keyboardHint = document.querySelector('.keyboard-hint');
-          
-          if (navDots) navDots.style.display = 'none';
-          if (progressBar) progressBar.style.display = 'none';
-          if (keyboardHint) keyboardHint.style.display = 'none';
-          
+          const navDots = document.getElementById("navDots");
+          const progressBar = document.getElementById("progressBar");
+          const keyboardHint = document.querySelector(".keyboard-hint");
+
+          if (navDots) navDots.style.display = "none";
+          if (progressBar) progressBar.style.display = "none";
+          if (keyboardHint) keyboardHint.style.display = "none";
+
           // Make all slides visible for reveal animations
-          document.querySelectorAll('.slide').forEach(slide => {
-            slide.classList.add('visible');
+          document.querySelectorAll(".slide").forEach((slide) => {
+            slide.classList.add("visible");
           });
         }
       });
